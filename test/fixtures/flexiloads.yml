@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  type: 
+  amount: 1
+  flmcs_order_id: 1
+
+two:
+  phone: MyString
+  type: 
+  amount: 1
+  flmcs_order_id: 1

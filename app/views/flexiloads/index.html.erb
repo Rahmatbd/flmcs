@@ -1,0 +1,37 @@
+<%- model_class = Flexiload -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:flmcs_order_id) %></th>
+      <th><%= model_class.human_attribute_name(:phone) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:amount) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:flmcs_transaction_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flexiloads.each do |flexiload| %>
+      <tr>
+        <td><%= link_to flexiload.flmcs_order_id, flexiload_path(flexiload) %></td>
+        <td><%= flexiload.phone %></td>
+        <td><%= flexiload.humanize_type %></td>
+        <td><%= flexiload.amount %></td>
+        <td><%= flexiload.status %></td>
+        <td><%= flexiload.flmcs_transaction_id %></td>
+        <td>
+          <%= link_to t('show', :default => t("helpers.links.show")),
+                      flexiload_path(flexiload), :class => 'btn btn-default btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('flexiload.new'),
+            new_flexiload_path,
+            :class => 'btn btn-primary' %>

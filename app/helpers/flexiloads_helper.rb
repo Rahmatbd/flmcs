@@ -1,0 +1,2 @@
+module FlexiloadsHelper
+end
