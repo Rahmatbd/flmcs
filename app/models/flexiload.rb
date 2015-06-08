@@ -5,13 +5,14 @@ class Flexiload < ActiveRecord::Base
   TYPE_POSTPAID = 1
 
   STATUS_PROCESSING = 'Processing'
+  STATUS_WAITING = 'Waiting'
   STATUS_SUCCESS = 'Success'
   STATUS_FAILED = 'Failed'
 
   validates :type, :amount, presence: true
   validates :phone, presence: true
 
-  # before_create :send_flexiload_request
+  before_create :send_flexiload_request
 
   def humanize_type
     case type
@@ -27,7 +28,7 @@ class Flexiload < ActiveRecord::Base
   def status
     _status = super
     begin
-      if _status == STATUS_PROCESSING
+      if flmcs_order_id.present? && (_status.nil? || _status == STATUS_PROCESSING || _status == STATUS_WAITING)
         response = HTTParty.get("http://new.turbotopup.com/index.php?_route=api/stsf/#{flmcs_order_id}")
         json_data = JSON.parse(Base64.decode64(response.body))
         update_attributes({

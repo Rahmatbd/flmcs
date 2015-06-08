@@ -10,6 +10,8 @@
     <%= error_span(@flexiload[:type]) %>
     <%= f.input :amount %>
     <%= error_span(@flexiload[:amount]) %>
+    <%= f.input :flmcs_order_id %>
+    <%= error_span(@flexiload[:flmcs_order_id]) %>
 
     <%= f.button :submit, :class => 'btn-primary', value: t('flexiload.create') %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
