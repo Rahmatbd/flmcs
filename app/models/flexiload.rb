@@ -11,7 +11,7 @@ class Flexiload < ActiveRecord::Base
   validates :type, :amount, presence: true
   validates :phone, presence: true
 
-  before_create :send_flexiload_request
+  # before_create :send_flexiload_request
 
   def humanize_type
     case type
@@ -75,7 +75,6 @@ class Flexiload < ActiveRecord::Base
         return true
       end
     rescue Exception => ex
-      p ex.message
       errors[:base] << 'something went wrong in api end'
       return false
     end
