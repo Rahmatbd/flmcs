@@ -44,6 +44,12 @@ group :development, :test do
   gem 'spring'
 end
 
+group :production, :staging do
+  # To enable all platform features in heroku
+  # See https://devcenter.heroku.com/articles/rails-integration-gems for more information.
+  gem 'rails_12factor'
+end
+
 gem 'phony_rails', '~> 0.12.6'
 gem 'simple_form', '~> 3.1.0'
 
