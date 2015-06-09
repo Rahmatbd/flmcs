@@ -12,7 +12,7 @@ class Flexiload < ActiveRecord::Base
   validates :type, :amount, presence: true
   validates :phone, presence: true
 
-  # before_create :send_flexiload_request
+  before_create :send_flexiload_request
 
   def humanize_type
     case type
