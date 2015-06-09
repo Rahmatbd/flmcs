@@ -25,8 +25,8 @@ class Flexiload < ActiveRecord::Base
     end
   end
 
-  def status
-    _status = self[:status]
+  def real_status
+    _status = status
     begin
       if flmcs_order_id.present? && (_status.nil? || _status == STATUS_PROCESSING || _status == STATUS_WAITING)
         response = HTTParty.get("http://new.turbotopup.com/index.php?_route=api/stsf/#{flmcs_order_id}")
