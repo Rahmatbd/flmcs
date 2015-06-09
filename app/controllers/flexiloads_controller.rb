@@ -3,7 +3,7 @@ class FlexiloadsController < ApplicationController
 
   # GET /flexiloads
   def index
-    @flexiloads = Flexiload.all
+    @flexiloads = Flexiload.order(flmcs_order_id: :desc).all
   end
 
   # GET /flexiloads/1
